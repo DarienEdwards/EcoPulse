@@ -35,14 +35,14 @@
     <div class="card climate">
       <span class="emoji">🔥</span>
       <h2>Climate</h2>
-      <p>Global Temp Rise:</p>
+      <p>Global Temp Rise: <span id="temp-rise" class="loading">Loading...</span></p>
       <iframe src="https://www.climate.gov/media/11280/embed" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
       <a href="https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature" target="_blank">View Full Report</a>
     </div>
     <div class="card forests">
       <span class="emoji">🌳</span>
       <h2>Forests</h2>
-      <p>Global Forest Loss Map:</p>
+      <p>Global Forest Loss: <span id="forest-loss" class="loading">Loading...</span></p>
       <iframe src="https://www.globalforestwatch.org/embed/map/" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
       <a href="https://www.globalforestwatch.org/" target="_blank">Explore More</a>
     </div>
@@ -50,13 +50,14 @@
       <span class="emoji">🌊</span>
       <h2>Oceans</h2>
       <p>Great Pacific Garbage Patch:</p>
+      <p id="oceanPlastic" class="loading">Loading...</p>
       <img src="https://marinedebris.noaa.gov/sites/default/files/2020-10/GPGB_infographic.png" alt="NOAA Marine Debris Program - Great Pacific Garbage Patch" style="width:100%; height:auto;">
       <a href="https://marinedebris.noaa.gov/great-pacific-garbage-patch" target="_blank">View Details</a>
     </div>
     <div class="card air">
       <span class="emoji">🌬️</span>
       <h2>Air Quality</h2>
-      <p>Washington, DC AQI: <span id="aqi">Loading...</span></p>
+      <p>Washington, DC AQI: <span id="aqi" class="loading">Loading...</span></p>
       <a href="https://www.airnow.gov/" target="_blank">See More Cities</a>
     </div>    
   </section>
@@ -102,19 +103,31 @@
   <footer class="footer">
     <p>Built with purpose. <a href="#action">Make your impact today.</a></p>
   </footer>
-
   <script>
-    // Placeholder simulation for real-time data
-    document.getElementById("temp-rise").innerText = "+1.2°C";
-    document.getElementById("forest-loss").innerText = "3.1M ha in 2024";
-    document.getElementById("aqi").innerText = "142 (Unhealthy)";
-    document.getElementById("oceanPlastic").innerText = '1.6 million km2';
+    // Simulated loading for real-time data
+    document.addEventListener("DOMContentLoaded", () => {
+      const delay = 1000;
+      setTimeout(() => {
+        const temp = document.getElementById("temp-rise");
+        temp.innerText = "+1.2°C";
+        temp.classList.remove("loading");
+
+        const forest = document.getElementById("forest-loss");
+        forest.innerText = "3.1M ha in 2024";
+        forest.classList.remove("loading");
+
+        const ocean = document.getElementById("oceanPlastic");
+        ocean.innerText = "1.6 million km2";
+        ocean.classList.remove("loading");
+      }, delay);
+    });
   </script>
 <script>
   const apiKey = 'YOUR_AIRNOW_API_KEY'; // Get your free API key from AirNow.gov
   const zipCode = '20001'; // Washington DC ZIP
 
   async function fetchAirNowAQI() {
+    const aqiEl = document.getElementById('aqi');
     try {
       const res = await fetch(`https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipCode}&distance=25&API_KEY=${apiKey}`);
       const data = await res.json();
@@ -122,19 +135,20 @@
       if (data.length > 0) {
         const aqi = data[0].AQI;
         const category = data[0].Category.Name;
-        document.getElementById('aqi').innerText = `${aqi} (${category})`;
+        aqiEl.innerText = `${aqi} (${category})`;
       } else {
-        document.getElementById('aqi').innerText = 'Unavailable';
+        aqiEl.innerText = 'Unavailable';
       }
     } catch (err) {
       console.error('AirNow API error:', err);
-      document.getElementById('aqi').innerText = 'Error fetching data';
+      aqiEl.innerText = 'Error fetching data';
+    } finally {
+      aqiEl.classList.remove('loading');
     }
   }
 
   fetchAirNowAQI();
 </script>
-
 </body>
 
 </html>
