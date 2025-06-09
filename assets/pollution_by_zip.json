@@ -1,0 +1,12 @@
+[
+  {"zip": "20001", "pollution": 80},
+  {"zip": "20002", "pollution": 65},
+  {"zip": "20003", "pollution": 40},
+  {"zip": "20004", "pollution": 55},
+  {"zip": "20005", "pollution": 70},
+  {"zip": "20006", "pollution": 90},
+  {"zip": "20007", "pollution": 50},
+  {"zip": "20008", "pollution": 30},
+  {"zip": "20009", "pollution": 75},
+  {"zip": "20010", "pollution": 60}
+]
