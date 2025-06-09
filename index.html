@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoPulse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo">EcoPulse</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#action">Action Center</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="videoSection">
+    <video autoplay muted loop id="myVideo">
+      <source src="assets/naturePanOver.mp4" type="video/mp4">
+    </video>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>One Earth. One Choice.</h1>
+      <a href="#dashboard" class="btn-primary">Start Tracking</a>
+    </div>
+  </section>
+
+  <section id="dashboard" class="dashboard">
+    <div class="card climate">
+      <span class="emoji">🔥</span>
+      <h2>Climate</h2>
+      <p>Global Temp Rise:</p>
+      <iframe src="https://www.climate.gov/media/11280/embed" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
+      <a href="https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature" target="_blank">View Full Report</a>
+    </div>
+    <div class="card forests">
+      <span class="emoji">🌳</span>
+      <h2>Forests</h2>
+      <p>Global Forest Loss Map:</p>
+      <iframe src="https://www.globalforestwatch.org/embed/map/" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
+      <a href="https://www.globalforestwatch.org/" target="_blank">Explore More</a>
+    </div>
+    <div class="card oceans">
+      <span class="emoji">🌊</span>
+      <h2>Oceans</h2>
+      <p>Great Pacific Garbage Patch:</p>
+      <img src="https://marinedebris.noaa.gov/sites/default/files/2020-10/GPGB_infographic.png" alt="NOAA Marine Debris Program - Great Pacific Garbage Patch" style="width:100%; height:auto;">
+      <a href="https://marinedebris.noaa.gov/great-pacific-garbage-patch" target="_blank">View Details</a>
+    </div>
+    <div class="card air">
+      <span class="emoji">🌬️</span>
+      <h2>Air Quality</h2>
+      <p>Washington, DC AQI: <span id="aqi">Loading...</span></p>
+      <a href="https://www.airnow.gov/" target="_blank">See More Cities</a>
+    </div>    
+  </section>
+</section>
+  <section id="action" class="action-center">
+    <h2>Take Action</h2>
+    <div class="tips">
+      <h3>🌱 Lifestyle Tips</h3>
+      <ul>
+        <li>Eat plant-based 2x a week</li>
+        <li>Reduce fast fashion purchases</li>
+        <li>Use refillable containers</li>
+        <li>Switch to green power providers</li>
+      </ul>
+    </div>
+    <div class="volunteer">
+      <h3>📍 Volunteer Opportunities</h3>
+      <p>Search on <a href="https://www.volunteermatch.org/" target="_blank">VolunteerMatch</a> or <a href="https://www.idealist.org/" target="_blank">Idealist</a>.</p>
+    </div>
+    <div class="donate">
+      <h3>💸 Donate to Trusted Orgs</h3>
+      <ul>
+        <li><a href="https://www.coolearth.org/" target="_blank">Cool Earth</a> (Climate)</li>
+        <li><a href="https://onetreeplanted.org/" target="_blank">One Tree Planted</a> (Forests)</li>
+        <li><a href="https://theoceancleanup.com/" target="_blank">The Ocean Cleanup</a> (Oceans)</li>
+        <li><a href="https://www.catf.us/" target="_blank">Clean Air Task Force</a> (Air)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About EcoPulse</h2>
+    <p>EcoPulse exists to simplify environmental impact tracking and empower real-world action through accessible data and individual choice. Our mission is to show people how the planet is doing and what they can do to help — today.</p>
+    <h3>Data Sources</h3>
+    <ul>
+      <li>Climate: <a href="https://climatechangetracker.org" target="_blank">ClimateChangeTracker.org</a></li>
+      <li>Forests: <a href="https://www.globalforestwatch.org" target="_blank">GlobalForestWatch.org</a></li>
+      <li>Oceans: <a href="https://theoceancleanup.com" target="_blank">TheOceanCleanup.com</a>, <a href="https://aqualink.org/map" target="_blank">AquaLink.org</a></li>
+      <li>Air: <a href="https://waqi.info" target="_blank">WAQI.info</a></li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <p>Built with purpose. <a href="#action">Make your impact today.</a></p>
+  </footer>
+
+  <script>
+    // Placeholder simulation for real-time data
+    document.getElementById("temp-rise").innerText = "+1.2°C";
+    document.getElementById("forest-loss").innerText = "3.1M ha in 2024";
+    document.getElementById("aqi").innerText = "142 (Unhealthy)";
+    document.getElementById("oceanPlastic").innerText = '1.6 million km2';
+  </script>
+<script>
+  const apiKey = 'YOUR_AIRNOW_API_KEY'; // Get your free API key from AirNow.gov
+  const zipCode = '20001'; // Washington DC ZIP
+
+  async function fetchAirNowAQI() {
+    try {
+      const res = await fetch(`https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipCode}&distance=25&API_KEY=${apiKey}`);
+      const data = await res.json();
+
+      if (data.length > 0) {
+        const aqi = data[0].AQI;
+        const category = data[0].Category.Name;
+        document.getElementById('aqi').innerText = `${aqi} (${category})`;
+      } else {
+        document.getElementById('aqi').innerText = 'Unavailable';
+      }
+    } catch (err) {
+      console.error('AirNow API error:', err);
+      document.getElementById('aqi').innerText = 'Error fetching data';
+    }
+  }
+
+  fetchAirNowAQI();
+</script>
+
+</body>
+
+</html>
