@@ -5,7 +5,22 @@ body {
      font-family: 'Inter', sans-serif;
      background-color: #F7F9F9;
      color: #2D3436;
-   }
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: -999px;
+    background: #000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+  }
    
    .navbar {
      display: flex;
@@ -73,18 +88,29 @@ body {
      margin-bottom: 1rem;
      text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 184, 148, 0.7);
    }
-   .btn-primary {
-     background-color: #00B894;
-     padding: 0.75rem 1.5rem;
-     border: none;
-     border-radius: 8px;
-     font-weight: 700;
-     color: white;
-     text-decoration: none;
-     font-size: 1rem;
-     display: inline-block;
-     margin-top: 1rem;
-   }
+  .btn-primary {
+    background-color: #00B894;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+
+  a:focus, .btn-primary:focus {
+    outline: 2px dashed #00B894;
+    outline-offset: 2px;
+  }
+
+  .card:focus {
+    outline: 2px dashed #00B894;
+    outline-offset: 4px;
+  }
    
    .dashboard {
      display: grid;

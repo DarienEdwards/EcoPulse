@@ -10,9 +10,10 @@
 </head>
 
 <body>
-  <header class="navbar">
+  <a href="#maincontent" class="skip-link">Skip to main content</a>
+  <header class="navbar" role="banner">
     <div class="logo">EcoPulse</div>
-    <nav>
+    <nav aria-label="Primary" role="navigation">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#action">Action Center</a></li>
@@ -20,42 +21,43 @@
       </ul>
     </nav>
   </header>
-  <section class="videoSection">
+  <main id="maincontent">
+  <section class="videoSection" aria-hidden="true">
     <video autoplay muted loop id="myVideo">
       <source src="assets/naturePanOver.mp4" type="video/mp4">
     </video>
   <section class="hero">
     <div class="hero-content">
       <h1>One Earth. One Choice.</h1>
-      <a href="#dashboard" class="btn-primary">Start Tracking</a>
+      <a href="#dashboard" class="btn-primary" role="button" aria-label="Start tracking">Start Tracking</a>
     </div>
   </section>
 
   <section id="dashboard" class="dashboard">
-    <div class="card climate">
-      <span class="emoji">🔥</span>
-      <h2>Climate</h2>
+    <div class="card climate" tabindex="0" role="region" aria-labelledby="climate-title">
+      <span class="emoji" aria-hidden="true">🔥</span>
+      <h2 id="climate-title">Climate</h2>
       <p>Global Temp Rise:</p>
-      <iframe src="https://www.climate.gov/media/11280/embed" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
+      <iframe src="https://www.climate.gov/media/11280/embed" style="width:100%; height:400px;" frameborder="0" scrolling="no" title="Global temperature rise graph"></iframe>
       <a href="https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature" target="_blank">View Full Report</a>
     </div>
-    <div class="card forests">
-      <span class="emoji">🌳</span>
-      <h2>Forests</h2>
+    <div class="card forests" tabindex="0" role="region" aria-labelledby="forests-title">
+      <span class="emoji" aria-hidden="true">🌳</span>
+      <h2 id="forests-title">Forests</h2>
       <p>Global Forest Loss Map:</p>
-      <iframe src="https://www.globalforestwatch.org/embed/map/" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
+      <iframe src="https://www.globalforestwatch.org/embed/map/" style="width:100%; height:400px;" frameborder="0" scrolling="no" title="Global forest loss map"></iframe>
       <a href="https://www.globalforestwatch.org/" target="_blank">Explore More</a>
     </div>
-    <div class="card oceans">
-      <span class="emoji">🌊</span>
-      <h2>Oceans</h2>
+    <div class="card oceans" tabindex="0" role="region" aria-labelledby="oceans-title">
+      <span class="emoji" aria-hidden="true">🌊</span>
+      <h2 id="oceans-title">Oceans</h2>
       <p>Great Pacific Garbage Patch:</p>
       <img src="https://marinedebris.noaa.gov/sites/default/files/2020-10/GPGB_infographic.png" alt="NOAA Marine Debris Program - Great Pacific Garbage Patch" style="width:100%; height:auto;">
       <a href="https://marinedebris.noaa.gov/great-pacific-garbage-patch" target="_blank">View Details</a>
     </div>
-    <div class="card air">
-      <span class="emoji">🌬️</span>
-      <h2>Air Quality</h2>
+    <div class="card air" tabindex="0" role="region" aria-labelledby="air-title">
+      <span class="emoji" aria-hidden="true">🌬️</span>
+      <h2 id="air-title">Air Quality</h2>
       <p>Washington, DC AQI: <span id="aqi">Loading...</span></p>
       <a href="https://www.airnow.gov/" target="_blank">See More Cities</a>
     </div>    
@@ -98,6 +100,7 @@
       <li>Air: <a href="https://waqi.info" target="_blank">WAQI.info</a></li>
     </ul>
   </section>
+  </main>
 
   <footer class="footer">
     <p>Built with purpose. <a href="#action">Make your impact today.</a></p>
