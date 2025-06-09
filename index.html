@@ -57,8 +57,9 @@
       <span class="emoji">🌬️</span>
       <h2>Air Quality</h2>
       <p>Washington, DC AQI: <span id="aqi">Loading...</span></p>
+      <div id="heatmap" class="heatmap"></div>
       <a href="https://www.airnow.gov/" target="_blank">See More Cities</a>
-    </div>    
+    </div>
   </section>
 </section>
   <section id="action" class="action-center">
@@ -134,6 +135,8 @@
 
   fetchAirNowAQI();
 </script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="main.js"></script>
 
 </body>
 

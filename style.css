@@ -211,7 +211,16 @@ body {
        padding: 1.5rem;
      }
    
-     .action-center, .about {
-       padding: 2rem 1rem;
-     }
-    }
+.action-center, .about {
+  padding: 2rem 1rem;
+ }
+ }
+
+.heatmap {
+  margin-top: 1rem;
+}
+
+#heatmap svg {
+  width: 100%;
+  height: auto;
+}
