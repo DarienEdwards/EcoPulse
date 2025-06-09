@@ -16,7 +16,9 @@ async function drawHeatmap() {
       .select('#heatmap')
       .append('svg')
       .attr('width', width)
-      .attr('height', height);
+      .attr('height', height)
+      .attr('role', 'img')
+      .attr('aria-label', 'Pollution heatmap by ZIP code');
 
     const colorScale = d3
       .scaleSequential()
@@ -32,7 +34,10 @@ async function drawHeatmap() {
       .attr('y', (_d, i) => Math.floor(i / columns) * gridSize)
       .attr('width', gridSize)
       .attr('height', gridSize)
-      .attr('fill', (d) => colorScale(d.pollution));
+      .attr('fill', (d) => colorScale(d.pollution))
+      .attr('tabindex', 0)
+      .append('title')
+      .text((d) => `ZIP ${d.zip}: ${d.pollution}`);
 
     svg
       .selectAll('text')
