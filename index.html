@@ -56,14 +56,19 @@
     <div class="card air">
       <span class="emoji">🌬️</span>
       <h2>Air Quality</h2>
-      <p>Washington, DC AQI: <span id="aqi">Loading...</span></p>
+      <p>Washington, DC AQI: <span id="aqi" class="loading">Loading...</span></p>
       <a href="https://www.airnow.gov/" target="_blank">See More Cities</a>
     </div>    
   </section>
 </section>
   <section id="action" class="action-center">
     <h2>Take Action</h2>
-    <div class="tips">
+    <div class="tab-menu">
+      <button class="tab-button active" data-tab="tips">Lifestyle Tips</button>
+      <button class="tab-button" data-tab="volunteer">Volunteer</button>
+      <button class="tab-button" data-tab="donate">Donate</button>
+    </div>
+    <div class="tab-content tips active">
       <h3>🌱 Lifestyle Tips</h3>
       <ul>
         <li>Eat plant-based 2x a week</li>
@@ -72,11 +77,11 @@
         <li>Switch to green power providers</li>
       </ul>
     </div>
-    <div class="volunteer">
+    <div class="tab-content volunteer">
       <h3>📍 Volunteer Opportunities</h3>
       <p>Search on <a href="https://www.volunteermatch.org/" target="_blank">VolunteerMatch</a> or <a href="https://www.idealist.org/" target="_blank">Idealist</a>.</p>
     </div>
-    <div class="donate">
+    <div class="tab-content donate">
       <h3>💸 Donate to Trusted Orgs</h3>
       <ul>
         <li><a href="https://www.coolearth.org/" target="_blank">Cool Earth</a> (Climate)</li>
@@ -119,21 +124,28 @@
       const res = await fetch(`https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipCode}&distance=25&API_KEY=${apiKey}`);
       const data = await res.json();
 
+      const aqiEl = document.getElementById('aqi');
       if (data.length > 0) {
         const aqi = data[0].AQI;
         const category = data[0].Category.Name;
-        document.getElementById('aqi').innerText = `${aqi} (${category})`;
+        aqiEl.innerText = `${aqi} (${category})`;
       } else {
-        document.getElementById('aqi').innerText = 'Unavailable';
+        aqiEl.innerText = 'Unavailable';
       }
+      aqiEl.classList.remove('loading');
+      aqiEl.classList.add('loaded');
     } catch (err) {
       console.error('AirNow API error:', err);
-      document.getElementById('aqi').innerText = 'Error fetching data';
+      const aqiEl = document.getElementById('aqi');
+      aqiEl.innerText = 'Error fetching data';
+      aqiEl.classList.remove('loading');
+      aqiEl.classList.add('loaded');
     }
   }
 
   fetchAirNowAQI();
 </script>
+<script src="main.js"></script>
 
 </body>
 
