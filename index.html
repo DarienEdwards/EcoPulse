@@ -110,28 +110,51 @@
     // Placeholder simulation for real-time data
     document.getElementById("temp-rise").innerText = "+1.2°C";
     document.getElementById("forest-loss").innerText = "3.1M ha in 2024";
-    document.getElementById("aqi").innerText = "142 (Unhealthy)";
     document.getElementById("oceanPlastic").innerText = '1.6 million km2';
   </script>
 <script>
   const apiKey = 'YOUR_AIRNOW_API_KEY'; // Get your free API key from AirNow.gov
   const zipCode = '20001'; // Washington DC ZIP
 
+  function getAqiClass(category) {
+    switch (category) {
+      case 'Good':
+        return 'aqi-good';
+      case 'Moderate':
+        return 'aqi-moderate';
+      case 'Unhealthy for Sensitive Groups':
+        return 'aqi-usg';
+      case 'Unhealthy':
+        return 'aqi-unhealthy';
+      case 'Very Unhealthy':
+        return 'aqi-very-unhealthy';
+      case 'Hazardous':
+        return 'aqi-hazardous';
+      default:
+        return '';
+    }
+  }
+
   async function fetchAirNowAQI() {
     try {
       const res = await fetch(`https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipCode}&distance=25&API_KEY=${apiKey}`);
       const data = await res.json();
+      const aqiEl = document.getElementById('aqi');
 
       if (data.length > 0) {
         const aqi = data[0].AQI;
         const category = data[0].Category.Name;
-        document.getElementById('aqi').innerText = `${aqi} (${category})`;
+        aqiEl.textContent = `${aqi} (${category})`;
+        aqiEl.className = getAqiClass(category);
       } else {
-        document.getElementById('aqi').innerText = 'Unavailable';
+        aqiEl.textContent = 'Unavailable';
+        aqiEl.className = '';
       }
     } catch (err) {
       console.error('AirNow API error:', err);
-      document.getElementById('aqi').innerText = 'Error fetching data';
+      const aqiEl = document.getElementById('aqi');
+      aqiEl.textContent = 'Error fetching data';
+      aqiEl.className = '';
     }
   }
 
