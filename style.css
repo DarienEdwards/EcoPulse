@@ -33,11 +33,36 @@ body {
      padding: 0;
    }
    
-   .navbar nav a {
+.navbar nav a {
      text-decoration: none;
      color: #2D3436;
-     font-weight: 600;
-   }
+  font-weight: 600;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  background: #00B894;
+  color: #fff;
+  z-index: 1000;
+}
+
+.navbar nav a:focus {
+  outline: 2px solid #00B894;
+  outline-offset: 2px;
+}
    
    .hero {
     
@@ -73,7 +98,7 @@ body {
      margin-bottom: 1rem;
      text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 184, 148, 0.7);
    }
-   .btn-primary {
+  .btn-primary {
      background-color: #00B894;
      padding: 0.75rem 1.5rem;
      border: none;
@@ -83,8 +108,13 @@ body {
      text-decoration: none;
      font-size: 1rem;
      display: inline-block;
-     margin-top: 1rem;
-   }
+    margin-top: 1rem;
+  }
+
+.btn-primary:focus {
+  outline: 3px solid #00B894;
+  outline-offset: 2px;
+}
    
    .dashboard {
      display: grid;
@@ -105,9 +135,14 @@ body {
      transition: transform 0.2s ease;
    }
    
-   .card:hover {
-     transform: translateY(-5px);
-   }
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card:focus {
+  outline: 3px solid #00B894;
+  outline-offset: 2px;
+}
    
    .card .emoji {
      font-size: 2rem;

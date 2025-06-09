@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <header class="navbar">
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="navbar" role="banner">
     <div class="logo">EcoPulse</div>
-    <nav>
+    <nav aria-label="Main navigation">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#action">Action Center</a></li>
@@ -20,48 +21,49 @@
       </ul>
     </nav>
   </header>
+  <main id="main">
   <section class="videoSection">
-    <video autoplay muted loop id="myVideo">
+    <video autoplay muted loop id="myVideo" aria-hidden="true" tabindex="-1">
       <source src="assets/naturePanOver.mp4" type="video/mp4">
     </video>
   <section class="hero">
     <div class="hero-content">
       <h1>One Earth. One Choice.</h1>
-      <a href="#dashboard" class="btn-primary">Start Tracking</a>
+      <a href="#dashboard" class="btn-primary" role="button" aria-label="Start Tracking Dashboard">Start Tracking</a>
     </div>
   </section>
 
   <section id="dashboard" class="dashboard">
-    <div class="card climate">
+    <div class="card climate" tabindex="0" role="region" aria-labelledby="climate-title">
       <span class="emoji">🔥</span>
-      <h2>Climate</h2>
+      <h2 id="climate-title">Climate</h2>
       <p>Global Temp Rise:</p>
-      <iframe src="https://www.climate.gov/media/11280/embed" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
-      <a href="https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature" target="_blank">View Full Report</a>
+      <iframe src="https://www.climate.gov/media/11280/embed" title="Global temperature rise chart" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
+      <a href="https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature" target="_blank" rel="noopener">View Full Report</a>
     </div>
-    <div class="card forests">
+    <div class="card forests" tabindex="0" role="region" aria-labelledby="forests-title">
       <span class="emoji">🌳</span>
-      <h2>Forests</h2>
+      <h2 id="forests-title">Forests</h2>
       <p>Global Forest Loss Map:</p>
-      <iframe src="https://www.globalforestwatch.org/embed/map/" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
-      <a href="https://www.globalforestwatch.org/" target="_blank">Explore More</a>
+      <iframe src="https://www.globalforestwatch.org/embed/map/" title="Global forest loss map" style="width:100%; height:400px;" frameborder="0" scrolling="no"></iframe>
+      <a href="https://www.globalforestwatch.org/" target="_blank" rel="noopener">Explore More</a>
     </div>
-    <div class="card oceans">
+    <div class="card oceans" tabindex="0" role="region" aria-labelledby="oceans-title">
       <span class="emoji">🌊</span>
-      <h2>Oceans</h2>
+      <h2 id="oceans-title">Oceans</h2>
       <p>Great Pacific Garbage Patch:</p>
       <img src="https://marinedebris.noaa.gov/sites/default/files/2020-10/GPGB_infographic.png" alt="NOAA Marine Debris Program - Great Pacific Garbage Patch" style="width:100%; height:auto;">
-      <a href="https://marinedebris.noaa.gov/great-pacific-garbage-patch" target="_blank">View Details</a>
+      <a href="https://marinedebris.noaa.gov/great-pacific-garbage-patch" target="_blank" rel="noopener">View Details</a>
     </div>
-    <div class="card air">
+    <div class="card air" tabindex="0" role="region" aria-labelledby="air-title">
       <span class="emoji">🌬️</span>
-      <h2>Air Quality</h2>
+      <h2 id="air-title">Air Quality</h2>
       <p>Washington, DC AQI: <span id="aqi">Loading...</span></p>
-      <div id="heatmap" class="heatmap"></div>
-      <a href="https://www.airnow.gov/" target="_blank">See More Cities</a>
+    <div id="heatmap" class="heatmap" role="img" aria-label="Pollution heatmap by ZIP code"></div>
+      <a href="https://www.airnow.gov/" target="_blank" rel="noopener">See More Cities</a>
     </div>
   </section>
-</section>
+  </section>
   <section id="action" class="action-center">
     <h2>Take Action</h2>
     <div class="tips">
@@ -75,15 +77,15 @@
     </div>
     <div class="volunteer">
       <h3>📍 Volunteer Opportunities</h3>
-      <p>Search on <a href="https://www.volunteermatch.org/" target="_blank">VolunteerMatch</a> or <a href="https://www.idealist.org/" target="_blank">Idealist</a>.</p>
+      <p>Search on <a href="https://www.volunteermatch.org/" target="_blank" rel="noopener">VolunteerMatch</a> or <a href="https://www.idealist.org/" target="_blank" rel="noopener">Idealist</a>.</p>
     </div>
     <div class="donate">
       <h3>💸 Donate to Trusted Orgs</h3>
       <ul>
-        <li><a href="https://www.coolearth.org/" target="_blank">Cool Earth</a> (Climate)</li>
-        <li><a href="https://onetreeplanted.org/" target="_blank">One Tree Planted</a> (Forests)</li>
-        <li><a href="https://theoceancleanup.com/" target="_blank">The Ocean Cleanup</a> (Oceans)</li>
-        <li><a href="https://www.catf.us/" target="_blank">Clean Air Task Force</a> (Air)</li>
+        <li><a href="https://www.coolearth.org/" target="_blank" rel="noopener">Cool Earth</a> (Climate)</li>
+        <li><a href="https://onetreeplanted.org/" target="_blank" rel="noopener">One Tree Planted</a> (Forests)</li>
+        <li><a href="https://theoceancleanup.com/" target="_blank" rel="noopener">The Ocean Cleanup</a> (Oceans)</li>
+        <li><a href="https://www.catf.us/" target="_blank" rel="noopener">Clean Air Task Force</a> (Air)</li>
       </ul>
     </div>
   </section>
@@ -93,13 +95,13 @@
     <p>EcoPulse exists to simplify environmental impact tracking and empower real-world action through accessible data and individual choice. Our mission is to show people how the planet is doing and what they can do to help — today.</p>
     <h3>Data Sources</h3>
     <ul>
-      <li>Climate: <a href="https://climatechangetracker.org" target="_blank">ClimateChangeTracker.org</a></li>
-      <li>Forests: <a href="https://www.globalforestwatch.org" target="_blank">GlobalForestWatch.org</a></li>
-      <li>Oceans: <a href="https://theoceancleanup.com" target="_blank">TheOceanCleanup.com</a>, <a href="https://aqualink.org/map" target="_blank">AquaLink.org</a></li>
-      <li>Air: <a href="https://waqi.info" target="_blank">WAQI.info</a></li>
+      <li>Climate: <a href="https://climatechangetracker.org" target="_blank" rel="noopener">ClimateChangeTracker.org</a></li>
+      <li>Forests: <a href="https://www.globalforestwatch.org" target="_blank" rel="noopener">GlobalForestWatch.org</a></li>
+      <li>Oceans: <a href="https://theoceancleanup.com" target="_blank" rel="noopener">TheOceanCleanup.com</a>, <a href="https://aqualink.org/map" target="_blank" rel="noopener">AquaLink.org</a></li>
+      <li>Air: <a href="https://waqi.info" target="_blank" rel="noopener">WAQI.info</a></li>
     </ul>
   </section>
-
+  </main>
   <footer class="footer">
     <p>Built with purpose. <a href="#action">Make your impact today.</a></p>
   </footer>
