@@ -1,10 +1,11 @@
-
 // Render pollution heatmap using D3
 async function drawHeatmap() {
   try {
     const data = await d3.json('assets/pollution_by_zip.json');
 
-    const containerWidth = 400;
+    const container = document.getElementById('heatmap');
+    const containerWidth = container.clientWidth;
+    d3.select(container).select('svg').remove();
     const columns = Math.ceil(Math.sqrt(data.length));
     const gridSize = Math.floor(containerWidth / columns);
     const rows = Math.ceil(data.length / columns);
@@ -55,4 +56,7 @@ async function drawHeatmap() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', drawHeatmap);
+document.addEventListener('DOMContentLoaded', () => {
+  drawHeatmap();
+  window.addEventListener('resize', drawHeatmap);
+});
