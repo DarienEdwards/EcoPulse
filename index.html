@@ -63,6 +63,11 @@
 </section>
   <section id="action" class="action-center">
     <h2>Take Action</h2>
+    <div class="habit-form">
+      <input type="text" id="locationInput" placeholder="Enter city or zip">
+      <button id="getTips">Get Eco Tips</button>
+    </div>
+    <pre id="habitTips"></pre>
     <div class="tips">
       <h3>🌱 Lifestyle Tips</h3>
       <ul>
@@ -133,6 +138,37 @@
   }
 
   fetchAirNowAQI();
+</script>
+<script>
+  const openaiKey = 'YOUR_OPENAI_API_KEY';
+
+  document.getElementById('getTips').addEventListener('click', async () => {
+    const location = document.getElementById('locationInput').value.trim();
+    if (!location) return;
+    const prompt = `Provide 3 short eco-friendly habit tips for residents of ${location}.`;
+
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openaiKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 100,
+          n: 1,
+          temperature: 0.7
+        })
+      });
+      const data = await res.json();
+      document.getElementById('habitTips').textContent = data.choices?.[0]?.message?.content || 'No tips found.';
+    } catch (err) {
+      console.error('OpenAI API error:', err);
+      document.getElementById('habitTips').textContent = 'Error fetching tips.';
+    }
+  });
 </script>
 
 </body>
